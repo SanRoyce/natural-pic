@@ -1,21 +1,23 @@
 import React, { useContext } from "react";
+import MyContext from "../context/MyContext";
 
 function Card({ descripcion, background, id, liked }) {
+  const { fotos } = useContext(MyContext);
   const favorite = () => {
-    const {fotos} = useContext(MyContext);
-    let index = fotos.findIndex((item) => item === "daniel");
+    console.log("text");
 
-    arr.splice(index, 1, { id: 1, descripcion, liked: false });
-    
+    let index = fotos.findIndex((item) => item.id === id);
+    fotos[index].liked = true;
   };
 
   return (
     <div
       key={id}
+      onClick={favorite}
       className="foto"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <p onClick={favorite}>{descripcion}</p>
+      <p>{descripcion}</p>
     </div>
   );
 }
